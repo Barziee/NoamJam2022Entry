@@ -17,10 +17,17 @@ public class Spritzer : MonoBehaviour
     
     public GameObject bulletSpawn;
 
+    private GameObject spritzerObject;
+
     private float shootTimer;
 
     private bool canShoot = false;
-    
+
+    private void Start()
+    {
+        spritzerObject = this.gameObject;
+    }
+
     private void Update()
     {
         if (Input.GetKey(KeyCode.A))
@@ -46,8 +53,8 @@ public class Spritzer : MonoBehaviour
     
     internal void DestroySelf()
     {
-        gameObject.SetActive(false);
-        DestroyImmediate(gameObject, true);
+        spritzerObject.SetActive(false);
+        Destroy(spritzerObject);
     }
 
     public void SetBulletSpawn(GameObject bulletSpawnObject)

@@ -11,7 +11,7 @@ public class WaterBullet : MonoBehaviour
     internal void DestroySelf()
     {
         gameObject.SetActive(false);
-        DestroyImmediate(gameObject, true);
+        Destroy(gameObject);
     }
 
     private void Awake()
@@ -24,12 +24,13 @@ public class WaterBullet : MonoBehaviour
         transform.Translate(speed * Time.deltaTime * Vector2.up);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("collisionenter");
+        Debug.Log("collision bullet");
         if (other.gameObject.GetComponent<Insect>())
         {
-            InsectInvaders.Instance.InsectKilledAtLocation(other.gameObject.GetComponent<Insect>().transform);
+            InsectInvaders.Instance.InsectKilledAtLocation(other.gameObject.GetComponent<Insect>().transform,
+                other.gameObject.GetComponent<Insect>());
             DestroySelf();
         }
     }

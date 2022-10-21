@@ -17,13 +17,15 @@ public class Minigame : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI livesText;
 
+    Action onGameEnded;
+
         internal void DestroySelf()
         {
                 gameObject.SetActive(false);
-                DestroyImmediate(gameObject, true);
+                Destroy(gameObject);
         }
         
-        public IEnumerator CountdownTimerCoroutine(int seconds, Action onComplete = null)
+        public IEnumerator CountdownTimerCoroutine(int seconds, Action onTimerComplete = null)
         {
                 countdownText.gameObject.SetActive(true);
                 
@@ -43,11 +45,13 @@ public class Minigame : MonoBehaviour
                 
                 
                 countdownText.gameObject.SetActive(false);
-                onComplete?.Invoke();
+        onTimerComplete?.Invoke();
         }
 
-    public virtual void Init(int seconds,int playerScore,int playerMiniGameLives, Action onComplete = null)
+    public virtual void Init(int seconds,int playerScore,int playerMiniGameLives,
+        Action onComplete = null,Action onMiniGameEnded = null)
     {
+        onGameEnded = onMiniGameEnded;
         if (playerMiniGameLives > 0)
             lives = playerMiniGameLives;
 
@@ -85,5 +89,6 @@ public class Minigame : MonoBehaviour
     public virtual void EndGame()
     {
         Debug.Log($"Player Lost MiniGame");
+        onGameEnded?.Invoke();
     }
 }
