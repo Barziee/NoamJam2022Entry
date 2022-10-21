@@ -6,10 +6,11 @@ public class WaterBullet : MonoBehaviour
     private float speed = 500f;
 
     [SerializeField] 
-    private float lifeTime = 5f;
+    private float lifeTime = 3f;
     
     internal void DestroySelf()
     {
+        InsectInvaders.Instance.GetSpritzer().RemoveBulletFromList(this);
         gameObject.SetActive(false);
         Destroy(gameObject);
     }

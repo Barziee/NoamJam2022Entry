@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Spritzer : MonoBehaviour
@@ -15,6 +16,8 @@ public class Spritzer : MonoBehaviour
 
     [SerializeField] 
     private WaterBullet bulletPrefab;
+
+    private List<WaterBullet> bulletsList = new List<WaterBullet>();
     
     public GameObject bulletSpawn;
 
@@ -47,16 +50,13 @@ public class Spritzer : MonoBehaviour
         if (canShoot && shootTimer > coolDownTime && Input.GetKey(KeyCode.Space))
         {
             shootTimer = 0f;
-
-            Instantiate(bulletPrefab, nuzzle.transform.position, Quaternion.identity, bulletSpawn.transform);
             StartCoroutine(NuzzlePress());
-            // play sfx water shoot
         }
     }
     
     internal void DestroySelf()
     {
-        //gameObject.SetActive(false);
+        gameObject.SetActive(false);
         Destroy(gameObject);
     }
 
@@ -74,16 +74,34 @@ public class Spritzer : MonoBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            nuzzle.transform.Translate(500 *Time.deltaTime * Vector2.left);
-            
+            nuzzle.transform.Translate(500 * Time.deltaTime * Vector2.left);
             yield return new WaitForSeconds(.05f);
         }
         
+        WaterBullet waterBulletObj = Instantiate(bulletPrefab, nuzzle.transform.position, Quaternion.identity, bulletSpawn.transform);
+        bulletsList.Add(waterBulletObj);
+        
+        // play sfx water shoot
+        
         for (int i = 0; i < 10; i++)
         {
-            nuzzle.transform.Translate(250 *Time.deltaTime * Vector2.right);
-            
+            nuzzle.transform.Translate(250 * Time.deltaTime * Vector2.right);
             yield return new WaitForSeconds(.05f);
         }
     }
+
+    public void RemoveBulletFromList(WaterBullet bullet)
+    {
+        if(!bullet) return;
+        if (bulletsList.Contains(bullet))
+        {
+            bulletsList.Remove(bullet);
+        }
+    }
+
+    public List<WaterBullet> GetWaterBulletList()
+    {
+        return bulletsList;
+    }
+
 }

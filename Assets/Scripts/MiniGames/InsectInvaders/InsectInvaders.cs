@@ -19,7 +19,7 @@ public class InsectInvaders : Minigame
         [SerializeField] private Transform spritzerStartLocation;
         [SerializeField] private GameObject spritzerBulletSpawn;
 
-        private Spritzer spriterObject;
+        private Spritzer spritzerObject;
 
         private bool finishedSpawning = false;
 
@@ -43,8 +43,8 @@ public class InsectInvaders : Minigame
         {
                 GameObject spritzerObj = Instantiate(spritzerPrefab, spritzerStartLocation);
                 spritzerObj.gameObject.SetActive(true);
-                spriterObject = spritzerObj.GetComponent<Spritzer>();
-                spriterObject.SetBulletSpawn(spritzerBulletSpawn);
+                spritzerObject = spritzerObj.GetComponent<Spritzer>();
+                spritzerObject.SetBulletSpawn(spritzerBulletSpawn);
                 insectList = new List<Insect>();
                 availableInsectSpawnLocations = new List<Transform>(insectSpawnLocations);
                 
@@ -107,12 +107,21 @@ public class InsectInvaders : Minigame
 
         public override void EndGame()
         {
-                spriterObject.DestroySelf();
+                foreach (WaterBullet bullet in spritzerObject.GetWaterBulletList())
+                {
+                        bullet.DestroySelf();
+                }
+                spritzerObject.DestroySelf();
                 foreach (Insect insect in insectList)
                 {
                         if(insect)
                                 insect.DestroySelf();
                 }
-                DestroySelf();
+                CloseSelf();
+        }
+
+        public Spritzer GetSpritzer()
+        {
+                return spritzerObject;
         }
 }

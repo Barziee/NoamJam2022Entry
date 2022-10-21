@@ -19,10 +19,9 @@ public class Minigame : MonoBehaviour
 
     Action onGameEnded;
 
-        internal void DestroySelf()
+        internal void CloseSelf()
         {
                 gameObject.SetActive(false);
-                Destroy(gameObject);
         }
         
         public IEnumerator CountdownTimerCoroutine(int seconds, Action onTimerComplete = null)
