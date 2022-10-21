@@ -20,7 +20,7 @@ public class Minigame : MonoBehaviour
         internal void DestroySelf()
         {
                 gameObject.SetActive(false);
-                Destroy(gameObject);
+                DestroyImmediate(gameObject, true);
         }
         
         public IEnumerator CountdownTimerCoroutine(int seconds, Action onComplete = null)
@@ -37,9 +37,10 @@ public class Minigame : MonoBehaviour
                 }
 
                 countdownText.text = startString;
+                // play sound
                 
                 yield return new WaitForSeconds(oneSecond);
-                // play sound
+                
                 
                 countdownText.gameObject.SetActive(false);
                 onComplete?.Invoke();

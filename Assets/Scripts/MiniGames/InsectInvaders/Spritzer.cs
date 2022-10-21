@@ -4,7 +4,7 @@ using UnityEngine;
 public class Spritzer : MonoBehaviour
 {
     [SerializeField] 
-    private float speed = 500f;
+    private float speed = 400f;
     
     [SerializeField] 
     private Transform muzzle;
@@ -14,28 +14,32 @@ public class Spritzer : MonoBehaviour
 
     [SerializeField] 
     private WaterBullet bulletPrefab;
+    
+    public GameObject bulletSpawn;
 
     private float shootTimer;
+
+    private bool canShoot = false;
     
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             // move left
             transform.Translate(-speed * Time.deltaTime, 0, 0);
         }
-        else if (Input.GetKeyDown(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             // move right
             transform.Translate(speed * Time.deltaTime, 0, 0);
         }
 
         shootTimer += Time.deltaTime;
-        if (shootTimer > coolDownTime && Input.GetKey(KeyCode.Space))
+        if (canShoot && shootTimer > coolDownTime && Input.GetKey(KeyCode.Space))
         {
             shootTimer = 0f;
 
-            Instantiate(bulletPrefab, muzzle.position, Quaternion.identity);
+            Instantiate(bulletPrefab, muzzle.position, Quaternion.identity, bulletSpawn.transform);
             // play sfx water shoot
         }
     }
@@ -43,6 +47,16 @@ public class Spritzer : MonoBehaviour
     internal void DestroySelf()
     {
         gameObject.SetActive(false);
-        Destroy(gameObject);
+        DestroyImmediate(gameObject, true);
+    }
+
+    public void SetBulletSpawn(GameObject bulletSpawnObject)
+    {
+        bulletSpawn = bulletSpawnObject;
+    }
+
+    public void SetCanShoot(bool set)
+    {
+        canShoot = set;
     }
 }

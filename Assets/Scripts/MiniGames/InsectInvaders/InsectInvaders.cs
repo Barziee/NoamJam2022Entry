@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,14 +9,15 @@ public class InsectInvaders : Minigame
 {
         public static InsectInvaders Instance;
         
+        [SerializeField] private Insect insectPrefab;
+        [SerializeField] private List<Transform> insectSpawnLocations;
         private List<Insect> insectList;
-        private List<Transform> insectSpawnLocations;
         private List<Transform> availableInsectSpawnLocations;
-        private int insectSpawnDelaySeconds;
+        private int insectSpawnDelaySeconds = 1;
 
         [SerializeField] private Spritzer spritzer;
-
-        [SerializeField] private Insect insectPrefab;
+        [SerializeField] private Transform spritzerStartLocation;
+        [SerializeField] private GameObject spritzerBulletSpawn;
 
         private void Awake()
         {
@@ -28,32 +30,33 @@ public class InsectInvaders : Minigame
                 {
                         Instance = this;
                 }
+
+                Init(3);
         }
-        
-        
 
         public override void Init(int seconds, Action onComplete = null)
         {
-                Instantiate(spritzer);
+                Spritzer spritzerObj = Instantiate(spritzer, spritzerStartLocation);
+                spritzerObj.SetBulletSpawn(spritzerBulletSpawn);
+                insectList = new List<Insect>();
                 availableInsectSpawnLocations = new List<Transform>(insectSpawnLocations);
                 
                 base.Init(seconds, () =>
                 {
-                        IEnumerator spawnInsectsCoroutine = SpawnInsectsCoroutine();
+                        spritzerObj.SetCanShoot(true);
+                        StartCoroutine(SpawnInsectsCoroutine());
                 });
         }
 
         public IEnumerator SpawnInsectsCoroutine()
         {
-                int seconds = 5;
+                int seconds = 3;
                 for (int i = 0; i < seconds; i++)
-                { 
+                {
                         yield return new WaitForSeconds(insectSpawnDelaySeconds);
                         SpawnInsect();
                         // play sound
                 }
-                
-                yield return null;
         }
 
         private void SpawnInsect()
@@ -89,8 +92,9 @@ public class InsectInvaders : Minigame
         {
                 spritzer.DestroySelf();
                 foreach (Insect insect in insectList)
-                { 
-                        insect.DestroySelf();
+                {
+                        if(insect)
+                                insect.DestroySelf();
                 }
                 DestroySelf();
         }
