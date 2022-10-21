@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class Minigame : MonoBehaviour
 {
-        private const int oneSecond = 1;
-        private string startString = "Start!";
-        
-        private int score = 0;
-        private int lives = 3;
+    private const int oneSecond = 1;
+    private string startString = "Start!";
 
-        [SerializeField] private Image backgroundImage;
-        [SerializeField] private TextMeshProUGUI countdownText;
-        [SerializeField] private TextMeshProUGUI scoreText;
-        [SerializeField] private TextMeshProUGUI livesText;
+    private int score = 0;
+    private int lives = 3;
+
+    [SerializeField] private Image backgroundImage;
+    [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI livesText;
 
         internal void DestroySelf()
         {
@@ -46,31 +46,40 @@ public class Minigame : MonoBehaviour
                 onComplete?.Invoke();
         }
 
-        public virtual void Init(int seconds, Action onComplete = null)
+    public virtual void Init(int seconds,int playerScore,int playerMiniGameLives, Action onComplete = null)
+    {
+        if (playerMiniGameLives > 0)
+            lives = playerMiniGameLives;
+
+        if (playerScore > 0)
+            score = playerScore;
+
+        StartCoroutine(CountdownTimerCoroutine(seconds, onComplete));
+    }
+
+    public void IncreaseScore(int amount)
+    {
+        score += amount;
+        scoreText.text = score.ToString();
+        Debug.Log($"Player score increased by {amount}, its now {score}");
+    }
+
+    public void ReduceLife()
+    {
+        Debug.Log($"Player Lives Reduced By 1");
+        lives--;
+        if (lives == 0)
         {
-                StartCoroutine(CountdownTimerCoroutine(seconds, onComplete));
+            // minigame lost
+
+            EndGame();
         }
 
-        public void IncreaseScore(int amount)
-        {
-                score += amount;
-                scoreText.text = score.ToString();
-        }
+        livesText.text = lives.ToString();
+    }
 
-        public void ReduceLife()
-        {
-                lives--;
-                if (lives == 0)
-                {
-                        // minigame lost
-                        EndGame();
-                }
-                
-                livesText.text = lives.ToString();
-        }
-
-        public virtual void EndGame()
-        {
-                
-        }
+    public virtual void EndGame()
+    {
+        Debug.Log($"Player Lost MiniGame");
+    }
 }
