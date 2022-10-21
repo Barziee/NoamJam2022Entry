@@ -13,7 +13,7 @@ public class InsectInvaders : Minigame
         private List<Transform> availableInsectSpawnLocations;
         private int insectSpawnDelaySeconds;
 
-        [SerializeField] private Spritzer spritzerObject;
+        [SerializeField] private Spritzer spritzer;
 
         [SerializeField] private Insect insectPrefab;
 
@@ -29,10 +29,12 @@ public class InsectInvaders : Minigame
                         Instance = this;
                 }
         }
+        
+        
 
         public override void Init(int seconds, Action onComplete = null)
         {
-                spritzerObject.gameObject.SetActive(true);
+                Instantiate(spritzer);
                 availableInsectSpawnLocations = new List<Transform>(insectSpawnLocations);
                 
                 base.Init(seconds, () =>
@@ -83,8 +85,13 @@ public class InsectInvaders : Minigame
                         availableInsectSpawnLocations.Add(location);
         }
 
-        public void EndGame()
+        public override void EndGame()
         {
-                spritzerObject.gameObject.SetActive(false);
+                spritzer.DestroySelf();
+                foreach (Insect insect in insectList)
+                { 
+                        insect.DestroySelf();
+                }
+                DestroySelf();
         }
 }

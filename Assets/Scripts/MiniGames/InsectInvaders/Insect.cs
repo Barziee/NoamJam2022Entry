@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class Insect : MonoBehaviour
 {
+        private int lifeTimeSeconds = 5;
+
+        private void Awake()
+        {
+                Invoke(nameof(InsectSurvived), lifeTimeSeconds);
+        }
+
+        private void InsectSurvived()
+        {
+                InsectInvaders.Instance.InsectMissedAtLocation(transform);
+                DestroySelf();
+        }
 
         internal void DestroySelf()
         {

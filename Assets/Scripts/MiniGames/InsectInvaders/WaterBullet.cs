@@ -16,7 +16,7 @@ public class WaterBullet : MonoBehaviour
 
     private void Awake()
     {
-        Invoke("DestroySelf", lifeTime);
+        Invoke(nameof(DestroySelf), lifeTime);
     }
 
     private void Update()

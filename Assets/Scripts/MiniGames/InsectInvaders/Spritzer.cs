@@ -39,4 +39,10 @@ public class Spritzer : MonoBehaviour
             // play sfx water shoot
         }
     }
+    
+    internal void DestroySelf()
+    {
+        gameObject.SetActive(false);
+        Destroy(gameObject);
+    }
 }
