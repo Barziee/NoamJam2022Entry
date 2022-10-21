@@ -9,15 +9,17 @@ public class InsectInvaders : Minigame
 {
         public static InsectInvaders Instance;
         
-        [SerializeField] private Insect insectPrefab;
+        [SerializeField] private GameObject insectPrefab;
         [SerializeField] private List<Transform> insectSpawnLocations;
         private List<Insect> insectList;
         private List<Transform> availableInsectSpawnLocations;
         private int insectSpawnDelaySeconds = 1;
 
-        [SerializeField] private Spritzer spritzer;
+        [SerializeField] private GameObject spritzerPrefab;
         [SerializeField] private Transform spritzerStartLocation;
         [SerializeField] private GameObject spritzerBulletSpawn;
+
+        private Spritzer spriterObject;
 
         private bool finishedSpawning = false;
 
@@ -39,17 +41,19 @@ public class InsectInvaders : Minigame
         public override void Init(int seconds, int score, int lives,
                 Action onComplete = null, Action onMiniGameEnded = null)
         {
-                Spritzer spritzerObj = Instantiate(spritzer, spritzerStartLocation);
+                GameObject spritzerObj = Instantiate(spritzerPrefab, spritzerStartLocation);
                 spritzerObj.gameObject.SetActive(true);
-                spritzerObj.SetBulletSpawn(spritzerBulletSpawn);
+                spriterObject = spritzerObj.GetComponent<Spritzer>();
+                spriterObject.SetBulletSpawn(spritzerBulletSpawn);
                 insectList = new List<Insect>();
                 availableInsectSpawnLocations = new List<Transform>(insectSpawnLocations);
                 
                 base.Init(seconds, score, lives, () =>
                 {
-                        spritzerObj.SetCanShoot(true);
+                        spritzerObj.GetComponent<Spritzer>().SetCanShoot(true);
                         StartCoroutine(SpawnInsectsCoroutine());
-                });
+                },
+                        null);
         }
 
         public IEnumerator SpawnInsectsCoroutine()
@@ -71,9 +75,9 @@ public class InsectInvaders : Minigame
                 if (availableInsectSpawnLocations.Count > 0)
                 {
                         int locationIndex = Random.Range(0, availableInsectSpawnLocations.Count - 1);
-                        Insect insect = Instantiate(insectPrefab, availableInsectSpawnLocations[locationIndex]);
+                        GameObject insect = Instantiate(insectPrefab, availableInsectSpawnLocations[locationIndex]);
                         availableInsectSpawnLocations.RemoveAt(locationIndex);
-                        insectList.Add(insect); 
+                        insectList.Add(insect.GetComponent<Insect>()); 
                 }
         }
 
@@ -103,7 +107,7 @@ public class InsectInvaders : Minigame
 
         public override void EndGame()
         {
-                spritzer.DestroySelf();
+                spriterObject.DestroySelf();
                 foreach (Insect insect in insectList)
                 {
                         if(insect)
