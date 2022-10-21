@@ -11,7 +11,7 @@ public class Minigame : MonoBehaviour
         private int score;
 
         [SerializeField] private Image backgroundImage;
-        [SerializeField] private TextMeshPro countdownText;
+        [SerializeField] private TextMeshProUGUI countdownText;
 
         public IEnumerator CountdownTimerCoroutine(int seconds)
         {
