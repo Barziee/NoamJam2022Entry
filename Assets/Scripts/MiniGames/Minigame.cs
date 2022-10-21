@@ -48,7 +48,8 @@ public class Minigame : MonoBehaviour
         onTimerComplete?.Invoke();
         }
 
-    public virtual void Init(int seconds,int playerScore,int playerMiniGameLives, Action onComplete = null,Action onMiniGameEnded = null)
+    public virtual void Init(int seconds,int playerScore,int playerMiniGameLives,
+        Action onComplete = null,Action onMiniGameEnded = null)
     {
         onGameEnded = onMiniGameEnded;
         if (playerMiniGameLives > 0)
