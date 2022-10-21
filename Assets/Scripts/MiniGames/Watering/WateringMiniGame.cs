@@ -6,18 +6,15 @@ using UnityEngine;
 public class WateringMiniGame : Minigame
 {
    [SerializeField] HitPositionScrollBar hitPositionScrollBar;
-    public override void Init(int seconds,int score,int lives, Action onComplete = null,Action OnGameEnded=null)
+    public override void Init(int seconds,int score,int lives, Action onTimerDone = null,Action<Minigame> OnGameEnded=null)
     {
-        base.Init(seconds,score,lives, onComplete, OnGameEnded);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        //this should be called from a session manager and not start.
-        Init(3,0,3, () =>
-        {
-            hitPositionScrollBar.init();
-        });
+        base.Init(seconds,score,lives,
+            () =>
+            {
+                hitPositionScrollBar.init();
+                onTimerDone?.Invoke();
+
+            }, OnGameEnded);
     }
 
     private void OnEnable()
@@ -56,6 +53,5 @@ public class WateringMiniGame : Minigame
     {
         base.EndGame();
        hitPositionScrollBar.CloseSelf();
-       hitPositionScrollBar.gameObject.SetActive(false);
     }
 }
