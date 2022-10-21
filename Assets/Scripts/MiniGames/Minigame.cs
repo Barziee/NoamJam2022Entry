@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,7 +17,7 @@ public class Minigame : MonoBehaviour
         [SerializeField] private TextMeshProUGUI scoreText;
         [SerializeField] private TextMeshProUGUI livesText;
 
-        public IEnumerator CountdownTimerCoroutine(int seconds)
+        public IEnumerator CountdownTimerCoroutine(int seconds, Action onComplete = null)
         {
                 countdownText.gameObject.SetActive(true);
                 
@@ -35,12 +36,12 @@ public class Minigame : MonoBehaviour
                 // play sound
                 
                 countdownText.gameObject.SetActive(false);
+                onComplete?.Invoke();
         }
 
-        public virtual void Init(int seconds)
+        public virtual void Init(int seconds, Action onComplete = null)
         {
-
-                StartCoroutine(CountdownTimerCoroutine(seconds));
+                StartCoroutine(CountdownTimerCoroutine(seconds, onComplete));
         }
 
         public void IncreaseScore(int amount)
