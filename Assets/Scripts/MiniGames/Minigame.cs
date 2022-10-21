@@ -17,39 +17,38 @@ public class Minigame : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI livesText;
 
-    Action onGameEnded;
+    Action<Minigame> onGameEnded;
 
-        internal void DestroySelf()
+    protected virtual void CloseSelf()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public IEnumerator CountdownTimerCoroutine(int timerCountdownSeconds, Action onTimerComplete = null)
+    {
+        countdownText.gameObject.SetActive(true);
+
+        countdownText.text = timerCountdownSeconds.ToString();
+        for (int i = 0; i < timerCountdownSeconds;)
         {
-                gameObject.SetActive(false);
-                Destroy(gameObject);
+            yield return new WaitForSeconds(oneSecond);
+            timerCountdownSeconds--;
+            countdownText.text = timerCountdownSeconds.ToString();
+            // play sound
         }
-        
-        public IEnumerator CountdownTimerCoroutine(int seconds, Action onTimerComplete = null)
-        {
-                countdownText.gameObject.SetActive(true);
-                
-                countdownText.text = seconds.ToString();
-                for (int i = 0; i < seconds;)
-                { 
-                        yield return new WaitForSeconds(oneSecond);
-                        seconds--;
-                        countdownText.text = seconds.ToString();
-                        // play sound
-                }
 
-                countdownText.text = startString;
-                // play sound
-                
-                yield return new WaitForSeconds(oneSecond);
-                
-                
-                countdownText.gameObject.SetActive(false);
+        countdownText.text = startString;
+        // play sound
+
+        yield return new WaitForSeconds(oneSecond);
+
+
+        countdownText.gameObject.SetActive(false);
         onTimerComplete?.Invoke();
-        }
+    }
 
-    public virtual void Init(int seconds,int playerScore,int playerMiniGameLives,
-        Action onComplete = null,Action onMiniGameEnded = null)
+    public virtual void Init(int timerCountdownSeconds, int playerScore, int playerMiniGameLives,
+        Action onTimerDone = null, Action<Minigame> onMiniGameEnded = null)
     {
         onGameEnded = onMiniGameEnded;
         if (playerMiniGameLives > 0)
@@ -62,7 +61,7 @@ public class Minigame : MonoBehaviour
         livesText.text = lives.ToString();
 
 
-        StartCoroutine(CountdownTimerCoroutine(seconds, onComplete));
+        StartCoroutine(CountdownTimerCoroutine(timerCountdownSeconds, onTimerDone));
     }
 
     public void IncreaseScore(int amount)
@@ -89,6 +88,6 @@ public class Minigame : MonoBehaviour
     public virtual void EndGame()
     {
         Debug.Log($"Player Lost MiniGame");
-        onGameEnded?.Invoke();
+        onGameEnded?.Invoke(this);
     }
 }
