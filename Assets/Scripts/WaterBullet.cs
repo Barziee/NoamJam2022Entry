@@ -26,7 +26,11 @@ public class WaterBullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.GetComponent<Insect>())
+        if (other.gameObject.GetComponent<Insect>())
+        {
+            InsectInvaders.Instance.InsectKilledAtLocation(other.gameObject.GetComponent<Insect>().transform);
             DestroySelf();
+        }
+            
     }
 }
