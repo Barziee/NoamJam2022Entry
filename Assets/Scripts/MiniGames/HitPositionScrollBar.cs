@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HitPositionScrollBar : MonoBehaviour
 {
     [SerializeField] GameObject arrowGO;
+    [SerializeField] Scrollbar targetScroll;
     [SerializeField] Sprite arrowSprite;
     [SerializeField] float frequency=5f;
     [SerializeField] float magnitude=100f;
@@ -20,7 +22,7 @@ public class HitPositionScrollBar : MonoBehaviour
         arrowStartPosition= arrowGO.transform.localPosition;
     }
      
-    public void init(int speed=0,Sprite arrowVisualSprite=null,float freq=0,float mag=0,float off=0)
+    public void init(Sprite arrowVisualSprite=null,float freq=0,float mag=0,float off=0,float targetYPos=0, float targetSize=0)
     {
         if (freq > 0)
             frequency = freq;
@@ -31,6 +33,14 @@ public class HitPositionScrollBar : MonoBehaviour
 
         if (arrowVisualSprite != null)
             arrowSprite = arrowVisualSprite;
+
+        if (targetYPos > 0)
+            targetScroll.value = targetYPos;
+
+        if (targetSize > 0)
+            targetScroll.size = targetSize;
+
+
 
         ShouldArrowMove = true;
     }

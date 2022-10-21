@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrowGO: {fileID: 3599734150006473496}
-  arrowMovementSpeed: 5
+  targetScroll: {fileID: 3840090712036279840}
   arrowSprite: {fileID: 0}
   frequency: 5
   magnitude: 100
@@ -137,7 +137,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 3140433218675225902}
   m_HandleRect: {fileID: 8972824563396001756}
   m_Direction: 3

@@ -45,8 +45,14 @@ public class Minigame : MonoBehaviour
         onComplete?.Invoke();
     }
 
-    public virtual void Init(int seconds, Action onComplete = null)
+    public virtual void Init(int seconds,int playerScore,int playerMiniGameLives, Action onComplete = null)
     {
+        if (playerMiniGameLives > 0)
+            lives = playerMiniGameLives;
+
+        if (playerScore > 0)
+            score = playerScore;
+
         StartCoroutine(CountdownTimerCoroutine(seconds, onComplete));
     }
 
