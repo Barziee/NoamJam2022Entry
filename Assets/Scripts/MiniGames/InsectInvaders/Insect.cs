@@ -20,7 +20,7 @@ public class Insect : MonoBehaviour
         internal void DestroySelf()
         {
                 gameObject.SetActive(false);
-                DestroyImmediate(gameObject, true);
+                Destroy(this);
         }
         
         public void OnCollisionEnter2D(Collision2D col)
