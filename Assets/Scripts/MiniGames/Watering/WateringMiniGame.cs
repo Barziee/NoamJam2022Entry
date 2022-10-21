@@ -6,9 +6,9 @@ using UnityEngine;
 public class WateringMiniGame : Minigame
 {
    [SerializeField] HitPositionScrollBar hitPositionScrollBar;
-    public override void Init(int seconds,int score,int lives, Action onComplete = null)
+    public override void Init(int seconds,int score,int lives, Action onComplete = null,Action OnGameEnded=null)
     {
-        base.Init(seconds,score,lives, onComplete);
+        base.Init(seconds,score,lives, onComplete, OnGameEnded);
     }
     // Start is called before the first frame update
     void Start()
