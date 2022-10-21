@@ -17,6 +17,12 @@ public class Minigame : MonoBehaviour
         [SerializeField] private TextMeshProUGUI scoreText;
         [SerializeField] private TextMeshProUGUI livesText;
 
+        internal void DestroySelf()
+        {
+                gameObject.SetActive(false);
+                Destroy(gameObject);
+        }
+        
         public IEnumerator CountdownTimerCoroutine(int seconds, Action onComplete = null)
         {
                 countdownText.gameObject.SetActive(true);
@@ -56,8 +62,14 @@ public class Minigame : MonoBehaviour
                 if (lives == 0)
                 {
                         // minigame lost
+                        EndGame();
                 }
                 
                 livesText.text = lives.ToString();
+        }
+
+        public virtual void EndGame()
+        {
+                
         }
 }
