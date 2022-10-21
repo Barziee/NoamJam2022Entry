@@ -58,7 +58,7 @@ public class InsectInvaders : Minigame
 
         public IEnumerator SpawnInsectsCoroutine()
         {
-                int seconds = 3;
+                int seconds = 10;
                 for (int i = 0; i < seconds; i++)
                 {
                         float diff = Random.Range(-0.5f, 0.5f);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class Spritzer : MonoBehaviour
@@ -7,7 +8,7 @@ public class Spritzer : MonoBehaviour
     private float speed = 400f;
     
     [SerializeField] 
-    private Transform muzzle;
+    private GameObject nuzzle;
     
     [SerializeField] 
     private float coolDownTime = 0.5f;
@@ -47,7 +48,8 @@ public class Spritzer : MonoBehaviour
         {
             shootTimer = 0f;
 
-            Instantiate(bulletPrefab, muzzle.position, Quaternion.identity, bulletSpawn.transform);
+            Instantiate(bulletPrefab, nuzzle.transform.position, Quaternion.identity, bulletSpawn.transform);
+            StartCoroutine(NuzzlePress());
             // play sfx water shoot
         }
     }
@@ -66,5 +68,22 @@ public class Spritzer : MonoBehaviour
     public void SetCanShoot(bool set)
     {
         canShoot = set;
+    }
+
+    private IEnumerator NuzzlePress()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            nuzzle.transform.Translate(500 *Time.deltaTime * Vector2.left);
+            
+            yield return new WaitForSeconds(.05f);
+        }
+        
+        for (int i = 0; i < 10; i++)
+        {
+            nuzzle.transform.Translate(250 *Time.deltaTime * Vector2.right);
+            
+            yield return new WaitForSeconds(.05f);
+        }
     }
 }
