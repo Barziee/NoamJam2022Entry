@@ -19,7 +19,7 @@ public class Minigame : MonoBehaviour
 
     Action<Minigame> onGameEnded;
 
-    protected virtual void CloseSelf()
+    public virtual void CloseSelf()
     {
         gameObject.SetActive(false);
     }

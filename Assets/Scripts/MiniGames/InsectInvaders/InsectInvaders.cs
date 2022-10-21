@@ -35,7 +35,7 @@ public class InsectInvaders : Minigame
                         Instance = this;
                 }
 
-                Init(3, 0 ,3, null);
+             //   Init(3, 0 ,3, null);
         }
 
         public override void Init(int seconds, int score, int lives,
@@ -53,7 +53,7 @@ public class InsectInvaders : Minigame
                         spritzerObj.GetComponent<Spritzer>().SetCanShoot(true);
                         StartCoroutine(SpawnInsectsCoroutine());
                 },
-                        null);
+                        onMiniGameEnded);
         }
 
         public IEnumerator SpawnInsectsCoroutine()
@@ -117,11 +117,17 @@ public class InsectInvaders : Minigame
                         if(insect)
                                 insect.DestroySelf();
                 }
-                CloseSelf();
+
+        base.EndGame();
         }
 
         public Spritzer GetSpritzer()
         {
                 return spritzerObject;
         }
+
+    public override void CloseSelf()
+    {
+        base.CloseSelf();
+    }
 }

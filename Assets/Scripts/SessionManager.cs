@@ -37,8 +37,7 @@ public class SessionManager : MonoBehaviour
 
      void OnMiniGameEnded(Minigame miniGame)
     {
-       // miniGame.Init(TIMER_COUNTDOWN_SECONDS,0, PLAYER_MINIGAME_LIVES,OnCountdownTimerEnded, OnMiniGameEnded);
-
+        miniGame.CloseSelf();
     }
 
 
