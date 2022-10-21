@@ -13,7 +13,7 @@ public class InsectInvaders : Minigame
         private List<Transform> availableInsectSpawnLocations;
         private int insectSpawnDelaySeconds;
 
-        [SerializeField] private GameObject playerObject;
+        [SerializeField] private Spritzer spritzerObject;
 
         [SerializeField] private Insect insectPrefab;
 
@@ -30,11 +30,15 @@ public class InsectInvaders : Minigame
                 }
         }
 
-        public override void Init(int seconds)
+        public override void Init(int seconds, Action onComplete = null)
         {
-                base.Init(seconds);
-                playerObject.SetActive(true);
+                spritzerObject.gameObject.SetActive(true);
                 availableInsectSpawnLocations = new List<Transform>(insectSpawnLocations);
+                
+                base.Init(seconds, () =>
+                {
+                        IEnumerator spawnInsectsCoroutine = SpawnInsectsCoroutine();
+                });
         }
 
         public IEnumerator SpawnInsectsCoroutine()
@@ -81,6 +85,6 @@ public class InsectInvaders : Minigame
 
         public void EndGame()
         {
-                playerObject.SetActive(false);
+                spritzerObject.gameObject.SetActive(false);
         }
 }
