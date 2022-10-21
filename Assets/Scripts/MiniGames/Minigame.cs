@@ -20,7 +20,7 @@ public class Minigame : MonoBehaviour
         internal void DestroySelf()
         {
                 gameObject.SetActive(false);
-                DestroyImmediate(gameObject, true);
+                Destroy(gameObject);
         }
         
         public IEnumerator CountdownTimerCoroutine(int seconds, Action onComplete = null)

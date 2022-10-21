@@ -13,7 +13,7 @@ public class Insect : MonoBehaviour
 
         private void InsectSurvived()
         {
-                InsectInvaders.Instance.InsectMissedAtLocation(transform);
+                InsectInvaders.Instance.InsectMissedAtLocation(transform, this);
                 DestroySelf();
         }
 
@@ -22,10 +22,11 @@ public class Insect : MonoBehaviour
                 gameObject.SetActive(false);
                 Destroy(this);
         }
-        
-        public void OnCollisionEnter2D(Collision2D col)
+
+        public void OnTriggerEnter2D(Collider2D other)
         {
-                if (col.gameObject.GetComponent<WaterBullet>())
+                Debug.Log("collision insect");
+                if (other.gameObject.GetComponent<WaterBullet>())
                 {
                         // hit insect with water
                         DestroySelf();

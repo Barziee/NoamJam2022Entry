@@ -19,6 +19,8 @@ public class InsectInvaders : Minigame
         [SerializeField] private Transform spritzerStartLocation;
         [SerializeField] private GameObject spritzerBulletSpawn;
 
+        private bool finishedSpawning = false;
+
         private void Awake()
         {
                 if (Instance)
@@ -37,6 +39,7 @@ public class InsectInvaders : Minigame
         public override void Init(int seconds, int score, int lives, Action onComplete = null)
         {
                 Spritzer spritzerObj = Instantiate(spritzer, spritzerStartLocation);
+                spritzerObj.gameObject.SetActive(true);
                 spritzerObj.SetBulletSpawn(spritzerBulletSpawn);
                 insectList = new List<Insect>();
                 availableInsectSpawnLocations = new List<Transform>(insectSpawnLocations);
@@ -53,10 +56,13 @@ public class InsectInvaders : Minigame
                 int seconds = 3;
                 for (int i = 0; i < seconds; i++)
                 {
-                        yield return new WaitForSeconds(insectSpawnDelaySeconds);
+                        float diff = Random.Range(-0.5f, 0.5f);
+                        yield return new WaitForSeconds(insectSpawnDelaySeconds + diff);
                         SpawnInsect();
                         // play sound
                 }
+
+                finishedSpawning = true;
         }
 
         private void SpawnInsect()
@@ -70,22 +76,28 @@ public class InsectInvaders : Minigame
                 }
         }
 
-        public void InsectKilledAtLocation(Transform location)
+        public void InsectKilledAtLocation(Transform location, Insect insect)
         {
                 IncreaseScore(1);
-                InsectRemovedFromLocation(location);
+                InsectRemovedFromLocation(location, insect);
         }
         
-        public void InsectMissedAtLocation(Transform location)
+        public void InsectMissedAtLocation(Transform location, Insect insect)
         {
                 ReduceLife();
-                InsectRemovedFromLocation(location);
+                InsectRemovedFromLocation(location, insect);
         }
 
-        private void InsectRemovedFromLocation(Transform location)
+        private void InsectRemovedFromLocation(Transform location, Insect insect)
         {
+                if (insectList.Contains(insect))
+                        insectList.Remove(insect);
+                
                 if(insectSpawnLocations.Contains(location))
                         availableInsectSpawnLocations.Add(location);
+
+                if (finishedSpawning && insectList.Count == 0)
+                        EndGame();
         }
 
         public override void EndGame()
