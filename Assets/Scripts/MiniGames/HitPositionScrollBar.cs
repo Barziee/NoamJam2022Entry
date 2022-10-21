@@ -12,8 +12,10 @@ public class HitPositionScrollBar : MonoBehaviour
     [SerializeField] float frequency=5f;
     [SerializeField] float magnitude;
     [SerializeField] float offset=0;
+    [SerializeField] BoxCollider2D targetCollider;
 
     Vector3 arrowStartPosition;
+    private RectTransform scrollerRectTransform;
 
     public Action<bool> playerPressedHit;
 
@@ -21,6 +23,7 @@ public class HitPositionScrollBar : MonoBehaviour
     {
         arrowStartPosition= arrowGO.transform.localPosition;
         magnitude = GetComponent<RectTransform>().sizeDelta.y / 2;
+        scrollerRectTransform = targetScroll.GetComponent<RectTransform>();
     }
      
     public void init(Sprite arrowVisualSprite=null,float freq=0,float off=0,float targetYPos=0, float targetSize=0)
@@ -37,7 +40,10 @@ public class HitPositionScrollBar : MonoBehaviour
             targetScroll.value = targetYPos;
 
         if (targetSize > 0)
+        {
             targetScroll.size = targetSize;
+            targetCollider.size =new Vector2(targetCollider.size.x,targetSize* scrollerRectTransform.sizeDelta.y);
+        }
 
 
 

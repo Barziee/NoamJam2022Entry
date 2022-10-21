@@ -54,6 +54,7 @@ public class WateringMiniGame : Minigame
 
     public override void EndGame()
     {
+        base.EndGame();
        hitPositionScrollBar.CloseSelf();
        hitPositionScrollBar.gameObject.SetActive(false);
     }
