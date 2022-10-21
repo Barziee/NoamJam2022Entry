@@ -68,6 +68,8 @@ public class InsectInvaders : Minigame
                 }
 
                 finishedSpawning = true;
+                if(insectList.Count == 0)
+                        EndGame();
         }
 
         private void SpawnInsect()
@@ -118,7 +120,7 @@ public class InsectInvaders : Minigame
                                 insect.DestroySelf();
                 }
 
-        base.EndGame();
+                base.EndGame();
         }
 
         public Spritzer GetSpritzer()

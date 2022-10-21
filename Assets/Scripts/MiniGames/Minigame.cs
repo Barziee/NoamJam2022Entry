@@ -78,7 +78,7 @@ public class Minigame : MonoBehaviour
         if (lives == 0)
         {
             // minigame lost
-
+            Debug.Log($"Player Lost MiniGame");
             EndGame();
         }
 
@@ -87,7 +87,6 @@ public class Minigame : MonoBehaviour
 
     public virtual void EndGame()
     {
-        Debug.Log($"Player Lost MiniGame");
         onGameEnded?.Invoke(this);
     }
 }
