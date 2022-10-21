@@ -26,12 +26,20 @@ public class Spritzer : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             // move left
-            transform.Translate(-speed * Time.deltaTime, 0, 0);
+            Transform transform1;
+            (transform1 = transform).Translate(-speed * Time.deltaTime, 0, 0);
+            Vector3 position = transform1.localPosition;
+            position.x = Mathf.Clamp(position.x, -590.0f, 590.0f);
+            transform.localPosition = position;
         }
         else if (Input.GetKey(KeyCode.D))
         {
             // move right
-            transform.Translate(speed * Time.deltaTime, 0, 0);
+            Transform transform1;
+            (transform1 = transform).Translate(speed * Time.deltaTime, 0, 0);
+            Vector3 position = transform1.localPosition;
+            position.x = Mathf.Clamp(position.x, -590.0f, 590.0f);
+            transform.localPosition = position;
         }
 
         shootTimer += Time.deltaTime;
