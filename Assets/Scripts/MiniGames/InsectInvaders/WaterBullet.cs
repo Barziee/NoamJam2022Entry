@@ -16,7 +16,7 @@ public class WaterBullet : MonoBehaviour
 
     private void Awake()
     {
-        Invoke("DestroySelf", lifeTime);
+        Invoke(nameof(DestroySelf), lifeTime);
     }
 
     private void Update()
@@ -26,7 +26,11 @@ public class WaterBullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.GetComponent<Insect>())
+        if (other.gameObject.GetComponent<Insect>())
+        {
+            InsectInvaders.Instance.InsectKilledAtLocation(other.gameObject.GetComponent<Insect>().transform);
             DestroySelf();
+        }
+            
     }
 }
