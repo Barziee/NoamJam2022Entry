@@ -9,6 +9,8 @@ public class SessionManager : MonoBehaviour
     const int TIMER_COUNTDOWN_SECONDS=3;
     const int PLAYER_MINIGAME_LIVES = 3;
 
+    private bool isInGame = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,10 +29,16 @@ public class SessionManager : MonoBehaviour
 
     public void MiniGameClicked(Minigame miniGame)
     {
-        //barzie anim
-        SoundManager.Instance.PlayAudioEffectOnce(openMiniGame);
-        miniGame.gameObject.SetActive(true);
-        miniGame.Init(TIMER_COUNTDOWN_SECONDS,0, PLAYER_MINIGAME_LIVES,OnCountdownTimerEnded, OnMiniGameEnded);
+        if (isInGame == false)
+        {
+            //barzie anim
+            SoundManager.Instance.PlayAudioEffectOnce(openMiniGame);
+            miniGame.gameObject.SetActive(true);
+        
+            isInGame = true;
+            miniGame.Init(TIMER_COUNTDOWN_SECONDS,0, PLAYER_MINIGAME_LIVES,OnCountdownTimerEnded, OnMiniGameEnded);    
+        }
+        
     }
 
     void OnCountdownTimerEnded() { }
@@ -38,6 +46,7 @@ public class SessionManager : MonoBehaviour
      void OnMiniGameEnded(Minigame miniGame)
     {
         miniGame.CloseSelf();
+        isInGame = false;
     }
 
 
