@@ -31,17 +31,17 @@ public class InsectInvaders : Minigame
                         Instance = this;
                 }
 
-                Init(3);
+                Init(3, 0 ,3);
         }
 
-        public override void Init(int seconds, Action onComplete = null)
+        public override void Init(int seconds, int score, int lives, Action onComplete = null)
         {
                 Spritzer spritzerObj = Instantiate(spritzer, spritzerStartLocation);
                 spritzerObj.SetBulletSpawn(spritzerBulletSpawn);
                 insectList = new List<Insect>();
                 availableInsectSpawnLocations = new List<Transform>(insectSpawnLocations);
                 
-                base.Init(seconds, () =>
+                base.Init(seconds, score, lives, () =>
                 {
                         spritzerObj.SetCanShoot(true);
                         StartCoroutine(SpawnInsectsCoroutine());
