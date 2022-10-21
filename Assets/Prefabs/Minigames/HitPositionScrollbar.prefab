@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 3140433218675225902}
   - component: {fileID: 2821877417555703765}
   m_Layer: 5
-  m_Name: Handle
+  m_Name: Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -324,7 +324,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20, y: 55}
+  m_Size: {x: 20, y: 92.3}
   m_EdgeRadius: 0
 --- !u!1 &6690723307184199579
 GameObject:

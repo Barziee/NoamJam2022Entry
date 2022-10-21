@@ -6,7 +6,6 @@ using UnityEngine;
 public class HitPositionScrollBar : MonoBehaviour
 {
     [SerializeField] GameObject arrowGO;
-    [SerializeField] int arrowMovementSpeed;
     [SerializeField] Sprite arrowSprite;
     [SerializeField] float frequency=5f;
     [SerializeField] float magnitude=100f;
@@ -14,16 +13,15 @@ public class HitPositionScrollBar : MonoBehaviour
 
     Vector3 arrowStartPosition;
 
+    public Action<bool> playerPressedHit;
+
     private void Start()
     {
         arrowStartPosition= arrowGO.transform.localPosition;
     }
      
-    public void init(int speed,Sprite arrowVisualSprite,float freq,float mag,float off)
+    public void init(int speed=0,Sprite arrowVisualSprite=null,float freq=0,float mag=0,float off=0)
     {
-        if (speed > 0)
-            arrowMovementSpeed = speed;
-
         if (freq > 0)
             frequency = freq;
         if (mag > 0)
@@ -33,7 +31,14 @@ public class HitPositionScrollBar : MonoBehaviour
 
         if (arrowVisualSprite != null)
             arrowSprite = arrowVisualSprite;
-    } 
+
+        ShouldArrowMove = true;
+    }
+
+    internal void CloseSelf()
+    {
+        ShouldArrowMove = false;
+    }
 
 
     // Update is called once per frame
@@ -50,19 +55,25 @@ public class HitPositionScrollBar : MonoBehaviour
 
     private void ShootRayCast()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up);
-
+        RaycastHit2D hit = Physics2D.Raycast(arrowGO.transform.position,Vector2.left);
+        Debug.DrawRay(arrowGO.transform.position, Vector3.left- arrowGO.transform.position, Color.green);
         // If it hits something...
-        if (hit.collider != null)
-        {
-            Debug.Log(hit.collider.name);
-        }
+
+        playerPressedHit?.Invoke(hit.collider != null && hit.collider.name == "Target");
     }
 
     void moveArrow()
     {
-        float sinFuncValue = Mathf.Sin(Time.time * frequency + offset);
-
-        arrowGO.transform.localPosition = arrowStartPosition + transform.up * sinFuncValue * magnitude;
+        if (ShouldArrowMove)
+        {
+            float sinFuncValue = Mathf.Sin(Time.time * frequency + offset);
+            arrowGO.transform.localPosition = arrowStartPosition + transform.up * sinFuncValue * magnitude;
+        }
+    
     }
+
+    public bool ShouldArrowMove { get; set; } = false;
+    
+
+    
 }

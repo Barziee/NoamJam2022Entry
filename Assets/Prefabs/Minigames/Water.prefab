@@ -229,8 +229,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -401,7 +401,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5302647073608401415}
-  - component: {fileID: 5598742195795903575}
+  - component: {fileID: 4784162599297084784}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -425,7 +425,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5598742195795903575
+--- !u!114 &4784162599297084784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -434,11 +434,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7927073577809458906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6bc56dec1ac4872b3bfca0731364e61, type: 3}
+  m_Script: {fileID: 11500000, guid: 327ced28d33840c4a8cbb3e2d8408a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundImage: {fileID: 403920647957270137}
   countdownText: {fileID: 6924749844873705990}
+  scoreText: {fileID: 0}
+  livesText: {fileID: 0}
+  hitPositionScrollBar: {fileID: 3224642311930945638}
 --- !u!1 &9179013083381218402
 GameObject:
   m_ObjectHideFlags: 0
@@ -629,3 +632,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4430277041792264743, guid: 755992c0fc11daa43bd6069b2e9701cb, type: 3}
   m_PrefabInstance: {fileID: 3539879027657093775}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3224642311930945638 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2152744954970870505, guid: 755992c0fc11daa43bd6069b2e9701cb, type: 3}
+  m_PrefabInstance: {fileID: 3539879027657093775}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c18552174d5df049bb70bd22de6a319, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

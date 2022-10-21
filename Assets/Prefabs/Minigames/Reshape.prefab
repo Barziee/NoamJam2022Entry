@@ -279,11 +279,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7927073577809458906}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6bc56dec1ac4872b3bfca0731364e61, type: 3}
+  m_Script: {fileID: 11500000, guid: 327ced28d33840c4a8cbb3e2d8408a31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundImage: {fileID: 0}
   countdownText: {fileID: 0}
+  scoreText: {fileID: 0}
+  livesText: {fileID: 0}
 --- !u!1 &9179013083381218402
 GameObject:
   m_ObjectHideFlags: 0
