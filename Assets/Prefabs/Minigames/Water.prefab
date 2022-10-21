@@ -801,6 +801,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HitPositionScrollbar
       objectReference: {fileID: 0}
+    - target: {fileID: 2152744954970870505, guid: 755992c0fc11daa43bd6069b2e9701cb, type: 3}
+      propertyPath: targetCollider
+      value: 
+      objectReference: {fileID: 1587940767685510490}
     - target: {fileID: 4430277041792264743, guid: 755992c0fc11daa43bd6069b2e9701cb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -902,6 +906,11 @@ PrefabInstance:
 --- !u!224 &890494773415352488 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4430277041792264743, guid: 755992c0fc11daa43bd6069b2e9701cb, type: 3}
+  m_PrefabInstance: {fileID: 3539879027657093775}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1587940767685510490 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2821877417555703765, guid: 755992c0fc11daa43bd6069b2e9701cb, type: 3}
   m_PrefabInstance: {fileID: 3539879027657093775}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &3224642311930945638 stripped
