@@ -13,6 +13,7 @@ public class WateringMiniGame : Minigame
     // Start is called before the first frame update
     void Start()
     {
+        //this should be called from a session manager and not start.
         Init(3,0,3, () =>
         {
             hitPositionScrollBar.init();

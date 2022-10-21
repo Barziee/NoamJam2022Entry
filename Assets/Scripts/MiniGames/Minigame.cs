@@ -54,6 +54,10 @@ public class Minigame : MonoBehaviour
         if (playerScore >= 0)
             score = playerScore;
 
+        scoreText.text = score.ToString();
+        livesText.text = lives.ToString();
+
+
         StartCoroutine(CountdownTimerCoroutine(seconds, onComplete));
     }
 

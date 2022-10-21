@@ -65,8 +65,6 @@ public class HitPositionScrollBar : MonoBehaviour
     private void ShootRayCast()
     {
         RaycastHit2D hit = Physics2D.Raycast(arrowGO.transform.position,Vector2.left);
-        Debug.DrawRay(arrowGO.transform.position, Vector3.left- arrowGO.transform.position, Color.green);
-        // If it hits something...
 
         playerPressedHit?.Invoke(hit.collider != null && hit.collider.name == "Target");
     }
@@ -78,7 +76,6 @@ public class HitPositionScrollBar : MonoBehaviour
             float sinFuncValue = Mathf.Sin(Time.time * frequency + offset);
             arrowGO.transform.localPosition = arrowStartPosition + transform.up * sinFuncValue * magnitude;
         }
-    
     }
 
     public bool ShouldArrowMove { get; set; } = false;
