@@ -27,7 +27,9 @@ public class SessionManager : MonoBehaviour
 
     public void MiniGameClicked(Minigame miniGame)
     {
+        //barzie anim
         SoundManager.Instance.PlayAudioEffectOnce(openMiniGame);
+        miniGame.gameObject.SetActive(true);
         miniGame.Init(TIMER_COUNTDOWN_SECONDS,0, PLAYER_MINIGAME_LIVES,OnCountdownTimerEnded, OnMiniGameEnded);
     }
 
@@ -35,7 +37,7 @@ public class SessionManager : MonoBehaviour
 
      void OnMiniGameEnded(Minigame miniGame)
     {
-        miniGame.Init(TIMER_COUNTDOWN_SECONDS,0, PLAYER_MINIGAME_LIVES,OnCountdownTimerEnded, OnMiniGameEnded);
+       // miniGame.Init(TIMER_COUNTDOWN_SECONDS,0, PLAYER_MINIGAME_LIVES,OnCountdownTimerEnded, OnMiniGameEnded);
 
     }
 

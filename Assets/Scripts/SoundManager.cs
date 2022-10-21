@@ -85,7 +85,7 @@ public class SoundManager : MonoBehaviour
         {
             areEffectsMuted = value;
             effectsSource.mute = areEffectsMuted;
-            AreEffectsMuted = PlayerPrefs.GetInt("AreEffectsMuted", 0) == 1 ? true : false;
+            areEffectsMuted = PlayerPrefs.GetInt("AreEffectsMuted", 0) == 1 ? true : false;
         }
     }
     #endregion
