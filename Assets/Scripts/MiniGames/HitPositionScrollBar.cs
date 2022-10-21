@@ -10,7 +10,7 @@ public class HitPositionScrollBar : MonoBehaviour
     [SerializeField] Scrollbar targetScroll;
     [SerializeField] Sprite arrowSprite;
     [SerializeField] float frequency=5f;
-    [SerializeField] float magnitude=100f;
+    [SerializeField] float magnitude;
     [SerializeField] float offset=0;
 
     Vector3 arrowStartPosition;
@@ -20,14 +20,13 @@ public class HitPositionScrollBar : MonoBehaviour
     private void Start()
     {
         arrowStartPosition= arrowGO.transform.localPosition;
+        magnitude = GetComponent<RectTransform>().sizeDelta.y / 2;
     }
      
-    public void init(Sprite arrowVisualSprite=null,float freq=0,float mag=0,float off=0,float targetYPos=0, float targetSize=0)
+    public void init(Sprite arrowVisualSprite=null,float freq=0,float off=0,float targetYPos=0, float targetSize=0)
     {
         if (freq > 0)
             frequency = freq;
-        if (mag > 0)
-            magnitude = mag;
         if (off > 0)
             offset = off;
 

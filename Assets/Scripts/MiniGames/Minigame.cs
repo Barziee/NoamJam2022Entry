@@ -51,7 +51,7 @@ public class Minigame : MonoBehaviour
         if (playerMiniGameLives > 0)
             lives = playerMiniGameLives;
 
-        if (playerScore > 0)
+        if (playerScore >= 0)
             score = playerScore;
 
         StartCoroutine(CountdownTimerCoroutine(seconds, onComplete));
