@@ -109,9 +109,10 @@ public class InsectInvaders : Minigame
 
         public override void EndGame()
         {
-                foreach (WaterBullet bullet in spritzerObject.GetWaterBulletList())
+                WaterBullet[] bullets =  spritzerObject.GetWaterBulletList().ToArray();
+                for (int i = 0; i < bullets.Length - 1; i++)
                 {
-                        bullet.DestroySelf();
+                        bullets[i].DestroySelf();
                 }
                 spritzerObject.DestroySelf();
                 foreach (Insect insect in insectList)
