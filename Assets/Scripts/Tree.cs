@@ -24,4 +24,10 @@ public class Tree : MonoBehaviour
         {
                 sprayGameDamageObject.gameObject.SetActive(false);
         }
+
+        public void TreeFullyHealed()
+        {
+                damagedTreeObject.gameObject.SetActive(false);
+                fullyHealedTreeObject.gameObject.SetActive(true);
+        }
 }

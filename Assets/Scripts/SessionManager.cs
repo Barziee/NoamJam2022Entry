@@ -11,6 +11,7 @@ public class SessionManager : MonoBehaviour
     private List<GameObject> heartsList;
 
     private Tree currentTree;
+    private int currentTreeScore = 0;
 
     const int TIMER_COUNTDOWN_SECONDS=3;
     const int PLAYER_MINIGAME_LIVES = 3;
@@ -28,12 +29,6 @@ public class SessionManager : MonoBehaviour
         SoundManager.Instance.EffectsVolume = 1;
 
         currentTree = FindObjectOfType<Tree>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 
@@ -55,7 +50,7 @@ public class SessionManager : MonoBehaviour
 
     void OnMiniGameEnded(Minigame miniGame, int lives)
     {
-        int type = miniGame.GetMiniGameType();
+        int victoryType = miniGame.GetMiniGameType();
         
         miniGame.CloseSelf();
         isInGame = false;
@@ -73,8 +68,11 @@ public class SessionManager : MonoBehaviour
         }
         else
         {
-            // player gained life
-            switch (type)
+            // player won minigame
+            currentTreeScore++;
+            if (currentTreeScore == 3)
+                victoryType = 4;
+            switch (victoryType)
             {
                 case 1:
                     currentTree.BranchGameWin();
@@ -84,6 +82,9 @@ public class SessionManager : MonoBehaviour
                     break;
                 case 3:
                     currentTree.InsectGameWin();
+                    break;
+                case 4:
+                    currentTree.TreeFullyHealed();
                     break;
                 default:
                     break;
