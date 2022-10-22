@@ -15,6 +15,8 @@ public class InsectInvaders : Minigame
         private List<Transform> availableInsectSpawnLocations;
         private int insectSpawnDelaySeconds = 1;
 
+        private int termitesToKill = 10;
+
         [SerializeField] private GameObject spritzerPrefab;
         [SerializeField] private Transform spritzerStartLocation;
         [SerializeField] private GameObject spritzerBulletSpawn;
@@ -34,8 +36,6 @@ public class InsectInvaders : Minigame
                 {
                         Instance = this;
                 }
-
-             //   Init(3, 0 ,3, null);
         }
 
         public override void Init(int seconds, int score, int lives,
@@ -58,7 +58,7 @@ public class InsectInvaders : Minigame
 
         public IEnumerator SpawnInsectsCoroutine()
         {
-                int seconds = 10;
+                int seconds = 15;
                 for (int i = 0; i < seconds; i++)
                 {
                         float diff = Random.Range(-0.5f, 0.5f);
@@ -87,6 +87,11 @@ public class InsectInvaders : Minigame
         {
                 IncreaseScore(1);
                 InsectRemovedFromLocation(location, insect);
+                termitesToKill--;
+                if (termitesToKill == 0)
+                {
+                        EndGame();
+                }
         }
         
         public void InsectMissedAtLocation(Transform location, Insect insect)

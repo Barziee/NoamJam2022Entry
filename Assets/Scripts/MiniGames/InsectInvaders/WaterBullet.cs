@@ -3,7 +3,7 @@
 public class WaterBullet : MonoBehaviour
 {
     [SerializeField] 
-    private float speed = 500f;
+    private float speed = 200f;
 
     [SerializeField] 
     private float lifeTime = 3f;

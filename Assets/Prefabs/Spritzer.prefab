@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a708fbebaf644f6db78dcf5eaccd13d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 400
+  speed: 100
   nuzzle: {fileID: 1981218680985925588}
   coolDownTime: 0.5
   bulletPrefab: {fileID: -7547476680267526329, guid: 6db6cc52893f9624f98be9400a33042f, type: 3}

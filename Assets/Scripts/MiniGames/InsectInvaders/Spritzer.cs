@@ -6,7 +6,7 @@ using UnityEngine;
 public class Spritzer : MonoBehaviour
 {
     [SerializeField] 
-    private float speed = 400f;
+    private float speed = 100f;
     
     [SerializeField] 
     private GameObject nuzzle;
@@ -79,13 +79,13 @@ public class Spritzer : MonoBehaviour
         
         for (int i = 0; i < 5; i++)
         {
-            nuzzle.transform.Translate(500 * Time.deltaTime * Vector2.left);
+            nuzzle.transform.Translate(50 * Time.deltaTime * Vector2.left);
             yield return new WaitForSeconds(.05f);
         }
         
         for (int i = 0; i < 10; i++)
         {
-            nuzzle.transform.Translate(250 * Time.deltaTime * Vector2.right);
+            nuzzle.transform.Translate(25 * Time.deltaTime * Vector2.right);
             yield return new WaitForSeconds(.05f);
         }
     }
