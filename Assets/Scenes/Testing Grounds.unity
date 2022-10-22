@@ -1040,7 +1040,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &319354756
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1208,18 +1208,6 @@ PrefabInstance:
     - target: {fileID: 3059934104951833203, guid: 8827539175b47f847a360516d481eb8c, type: 3}
       propertyPath: m_Name
       value: Menu Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3059934104951833203, guid: 8827539175b47f847a360516d481eb8c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3059934104951833214, guid: 8827539175b47f847a360516d481eb8c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3059934104951833214, guid: 8827539175b47f847a360516d481eb8c, type: 3}
-      propertyPath: m_OverrideSorting
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3059934104951833215, guid: 8827539175b47f847a360516d481eb8c, type: 3}
       propertyPath: m_Pivot.x
@@ -1994,10 +1982,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: InsectInvader
       objectReference: {fileID: 0}
-    - target: {fileID: 7927073577809458906, guid: 8443fd853c185734dbbb71de5cb9a5ee, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8443fd853c185734dbbb71de5cb9a5ee, type: 3}
 --- !u!1001 &720271501
@@ -2236,25 +2220,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5595103915860626771, guid: 12fdef6be17fa5c48b6f5a7773033938, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5595103915860626771, guid: 12fdef6be17fa5c48b6f5a7773033938, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5595103915860626771, guid: 12fdef6be17fa5c48b6f5a7773033938, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 7927073577809458906, guid: 12fdef6be17fa5c48b6f5a7773033938, type: 3}
       propertyPath: m_Name
       value: Water
-      objectReference: {fileID: 0}
-    - target: {fileID: 7927073577809458906, guid: 12fdef6be17fa5c48b6f5a7773033938, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12fdef6be17fa5c48b6f5a7773033938, type: 3}
@@ -8626,28 +8594,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 744418430}
     m_Modifications:
     - target: {fileID: 4759420541970121517, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4790420731712435602, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
       propertyPath: m_Name
       value: DeadBranch
       objectReference: {fileID: 0}
-    - target: {fileID: 4790420731712435602, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 7051982202351930907, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7051982202351930907, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7051982202351930907, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7051982202351930907, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7344993061029855567, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
       propertyPath: m_RootOrder
