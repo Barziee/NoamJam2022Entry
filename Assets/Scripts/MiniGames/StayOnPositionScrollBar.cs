@@ -104,7 +104,7 @@ public class StayOnPositionScrollBar : MonoBehaviour
                 OnRoundEnd?.Invoke(true);
 
                 if (fillMeter.size <1)
-            fillMeter.size += 0.5f * Time.deltaTime;
+            fillMeter.size += 0.2f * Time.deltaTime;
         }
         else
         {
@@ -113,7 +113,7 @@ public class StayOnPositionScrollBar : MonoBehaviour
 
 
             if (fillMeter.size > 0)
-            fillMeter.size -= 0.1f * Time.deltaTime;
+            fillMeter.size -= 0.2f * Time.deltaTime;
         }
 
     }

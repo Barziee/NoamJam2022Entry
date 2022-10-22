@@ -8672,29 +8672,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 744418430}
     m_Modifications:
+    - target: {fileID: 2887636656594974695, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
+      propertyPath: m_Size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2887636656594974695, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4759420541970121517, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.587
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4759420541970121517, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4790420731712435602, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
       propertyPath: m_Name
       value: DeadBranch
       objectReference: {fileID: 0}
-    - target: {fileID: 4790420731712435602, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 7051982202351930907, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7051982202351930907, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7051982202351930907, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7344993061029855567, guid: 144be05d21c37ca4db414a031bf556ad, type: 3}
       propertyPath: m_RootOrder
