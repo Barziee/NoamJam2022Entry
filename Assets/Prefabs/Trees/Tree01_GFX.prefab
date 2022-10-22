@@ -854,6 +854,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4961835263119812428}
+  - component: {fileID: 5378358336770102776}
   m_Layer: 5
   m_Name: Tree01_GFX
   m_TagString: Untagged
@@ -883,6 +884,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -296}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5378358336770102776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4961835263119812429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c40e6c99334401ad035bbc3a1360c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damagedTreeObject: {fileID: 3698967728530848576}
+  waterGameDamageObject: {fileID: 8366555840270032482}
+  branchGameDamageObject: {fileID: 1807903055024988522}
+  sprayGameDamageObject: {fileID: 9202957987935152900}
+  fullyHealedTreeObject: {fileID: 2233964629823366683}
 --- !u!1 &4961835263185341512
 GameObject:
   m_ObjectHideFlags: 0

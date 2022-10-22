@@ -10,6 +10,8 @@ public class SessionManager : MonoBehaviour
     [SerializeField] private HorizontalLayoutGroup heartsGroup;
     private List<GameObject> heartsList;
 
+    private Tree currentTree;
+
     const int TIMER_COUNTDOWN_SECONDS=3;
     const int PLAYER_MINIGAME_LIVES = 3;
 
@@ -24,6 +26,8 @@ public class SessionManager : MonoBehaviour
         SoundManager.Instance.MasterVolume = 1;
         SoundManager.Instance.MusicVolume = 1;
         SoundManager.Instance.EffectsVolume = 1;
+
+        currentTree = FindObjectOfType<Tree>();
     }
 
     // Update is called once per frame
@@ -51,10 +55,12 @@ public class SessionManager : MonoBehaviour
 
     void OnMiniGameEnded(Minigame miniGame, int lives)
     {
-         miniGame.CloseSelf();
-         isInGame = false;
-         if (lives != currentLives)
-         {
+        int type = miniGame.GetMiniGameType();
+        
+        miniGame.CloseSelf();
+        isInGame = false;
+        if (lives != currentLives)
+        { 
             // player lost life
             int difference = currentLives - lives;
             LoseLives(difference);
@@ -64,7 +70,25 @@ public class SessionManager : MonoBehaviour
             {
                 // game over   
             }
-         }
+        }
+        else
+        {
+            // player gained life
+            switch (type)
+            {
+                case 1:
+                    currentTree.BranchGameWin();
+                    break;
+                case 2:
+                    currentTree.WaterGameWin();
+                    break;
+                case 3:
+                    currentTree.InsectGameWin();
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     private void LoseLives(int livesLost)

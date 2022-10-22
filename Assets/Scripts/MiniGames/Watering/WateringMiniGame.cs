@@ -20,6 +20,11 @@ public class WateringMiniGame : Minigame
 
             }, OnGameEnded);
     }
+    
+    public override int GetMiniGameType()
+    {
+        return 2;
+    }
 
     private void OnEnable()
     {

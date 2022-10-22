@@ -18,6 +18,10 @@ public class DeadBranch : Minigame
             }, OnGameEnded);
     }
 
+    public override int GetMiniGameType()
+    {
+        return 1;
+    }
 
     private void OnEnable()
     {

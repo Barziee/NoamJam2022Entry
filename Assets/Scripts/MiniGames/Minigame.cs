@@ -24,6 +24,11 @@ public class Minigame : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public virtual int GetMiniGameType()
+    {
+        return 0;
+    }
+
     public IEnumerator CountdownTimerCoroutine(int timerCountdownSeconds, Action onTimerComplete = null)
     {
         countdownText.gameObject.SetActive(true);

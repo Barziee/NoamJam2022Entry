@@ -25,6 +25,11 @@ public class InsectInvaders : Minigame
 
         private bool finishedSpawning = false;
 
+        public override int GetMiniGameType()
+        {
+                return 3;
+        }
+        
         private void Awake()
         {
                 if (Instance)
