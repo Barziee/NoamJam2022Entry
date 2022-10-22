@@ -39,7 +39,7 @@ public class InsectInvaders : Minigame
         }
 
         public override void Init(int seconds, int score, int lives,
-                Action onComplete = null, Action<Minigame> onMiniGameEnded = null)
+                Action onComplete = null, Action<Minigame, int> onMiniGameEnded = null)
         {
                 GameObject spritzerObj = Instantiate(spritzerPrefab, spritzerStartLocation);
                 spritzerObj.gameObject.SetActive(true);

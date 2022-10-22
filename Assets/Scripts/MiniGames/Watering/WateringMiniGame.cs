@@ -6,7 +6,7 @@ using UnityEngine;
 public class WateringMiniGame : Minigame
 {
    [SerializeField] HitPositionScrollBar hitPositionScrollBar;
-    public override void Init(int seconds,int score,int lives, Action onTimerDone = null,Action<Minigame> OnGameEnded=null)
+    public override void Init(int seconds,int score,int lives, Action onTimerDone = null,Action<Minigame, int> OnGameEnded=null)
     {
         base.Init(seconds,score,lives,
             () =>
