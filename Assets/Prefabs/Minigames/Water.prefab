@@ -32,7 +32,7 @@ RectTransform:
   m_Children:
   - {fileID: 956983482}
   m_Father: {fileID: 1783592658}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -488,8 +488,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 326223087}
   - {fileID: 2045993433}
+  - {fileID: 326223087}
   - {fileID: 1713021532}
   m_Father: {fileID: 2828185019383063103}
   m_RootOrder: 8
@@ -569,7 +569,7 @@ RectTransform:
   m_Children:
   - {fileID: 658678599}
   m_Father: {fileID: 1783592658}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1545,6 +1545,11 @@ MonoBehaviour:
   scoreText: {fileID: 4461276743843884707}
   livesText: {fileID: 7025727865314975105}
   hitPositionScrollBar: {fileID: 3224642311930945638}
+  animator: {fileID: 1165626801}
+  hpDrops:
+  - {fileID: 2045993433}
+  - {fileID: 326223087}
+  - {fileID: 1713021532}
 --- !u!95 &1165626801
 Animator:
   serializedVersion: 4

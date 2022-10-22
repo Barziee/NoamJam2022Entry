@@ -6,11 +6,15 @@ using UnityEngine;
 public class WateringMiniGame : Minigame
 {
    [SerializeField] HitPositionScrollBar hitPositionScrollBar;
+    [SerializeField] Animator animator;
+    [SerializeField] Transform[] hpDrops;
+
     public override void Init(int seconds,int score,int lives, Action onTimerDone = null,Action<Minigame, int> OnGameEnded=null)
     {
         base.Init(seconds,score,lives,
             () =>
             {
+                
                 hitPositionScrollBar.init();
                 onTimerDone?.Invoke();
 
@@ -32,12 +36,27 @@ public class WateringMiniGame : Minigame
         if (!didHit)
         {
             ReduceLife();
+            UpdateVisualLives();
         }
         else
         {
+            animator.Play("Watering_On");
+            StartCoroutine(TimerToStopWateringAnim());
             IncreaseScore(5);
         }
         setNextLevelHitBar();
+    }
+
+    private void UpdateVisualLives()
+    {
+        hpDrops[lives].GetChild(0).gameObject.SetActive(true);
+    }
+
+    private IEnumerator TimerToStopWateringAnim()
+    {
+        yield return new WaitForSeconds(3);
+        animator.Play("Watering_Off");
+
     }
 
     private void setNextLevelHitBar()
@@ -54,6 +73,12 @@ public class WateringMiniGame : Minigame
     {
         base.EndGame();
        hitPositionScrollBar.CloseSelf();
+
+
+        foreach (Transform child in hpDrops)
+        {
+            child.GetChild(0).gameObject.SetActive(false);
+        }
     }
 
 

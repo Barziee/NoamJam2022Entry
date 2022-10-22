@@ -10,7 +10,7 @@ public class Minigame : MonoBehaviour
     private string startString = "Start!";
 
     private int score = 0;
-    private int lives = 3;
+    protected int lives = 3;
 
     [SerializeField] private Image backgroundImage;
     [SerializeField] private TextMeshProUGUI countdownText;
