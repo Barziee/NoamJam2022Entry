@@ -8,6 +8,7 @@ public class WateringMiniGame : Minigame
    [SerializeField] HitPositionScrollBar hitPositionScrollBar;
     [SerializeField] Animator animator;
     [SerializeField] Transform[] hpDrops;
+    [SerializeField] int amountOfRounds=5;
 
     public override void Init(int seconds,int score,int lives, Action onTimerDone = null,Action<Minigame, int> OnGameEnded=null)
     {
@@ -35,8 +36,8 @@ public class WateringMiniGame : Minigame
         Debug.Log($"player tried to hit and got {didHit}");
         if (!didHit)
         {
-            ReduceLife();
             UpdateVisualLives();
+            ReduceLife();
         }
         else
         {
@@ -44,12 +45,20 @@ public class WateringMiniGame : Minigame
             StartCoroutine(TimerToStopWateringAnim());
             IncreaseScore(5);
         }
+        amountOfRounds--;
+
+        if (amountOfRounds == 0)
+        {
+            EndGame();
+            return;
+        }
+
         setNextLevelHitBar();
     }
 
     private void UpdateVisualLives()
     {
-        hpDrops[lives].GetChild(0).gameObject.SetActive(true);
+        hpDrops[lives-1].GetChild(0).gameObject.SetActive(true);
     }
 
     private IEnumerator TimerToStopWateringAnim()

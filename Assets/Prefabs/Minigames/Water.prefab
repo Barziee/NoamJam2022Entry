@@ -1550,6 +1550,7 @@ MonoBehaviour:
   - {fileID: 2045993433}
   - {fileID: 326223087}
   - {fileID: 1713021532}
+  amountOfRounds: 5
 --- !u!95 &1165626801
 Animator:
   serializedVersion: 4
