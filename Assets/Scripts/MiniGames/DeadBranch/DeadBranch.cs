@@ -6,6 +6,7 @@ using UnityEngine;
 public class DeadBranch : Minigame
 {
     [SerializeField] StayOnPositionScrollBar stayOnPositionScrollBar;
+    [SerializeField] int amountOfRounds = 3;
 
     public override void Init(int seconds, int score, int lives, Action onTimerDone = null, Action<Minigame, int> OnGameEnded = null)
     {
@@ -40,6 +41,14 @@ public class DeadBranch : Minigame
         {
             IncreaseScore(5);
         }
+        amountOfRounds--;
+
+        if (amountOfRounds == 0)
+        {
+            EndGame();
+            return;
+        }
+
         ResetOnPositionBar();
     }
 
@@ -50,6 +59,7 @@ public class DeadBranch : Minigame
 
     public override void EndGame()
     {
+        amountOfRounds = 3;
         base.EndGame();
         stayOnPositionScrollBar.CloseSelf();
     }

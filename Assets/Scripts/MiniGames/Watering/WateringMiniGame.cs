@@ -80,10 +80,11 @@ public class WateringMiniGame : Minigame
 
     public override void EndGame()
     {
+        animator.Play("Watering_Off");
         base.EndGame();
        hitPositionScrollBar.CloseSelf();
 
-
+        amountOfRounds = 5;
         foreach (Transform child in hpDrops)
         {
             child.GetChild(0).gameObject.SetActive(false);
