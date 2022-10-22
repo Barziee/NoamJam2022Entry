@@ -6,7 +6,7 @@ using UnityEngine;
 public class WateringMiniGame : Minigame
 {
    [SerializeField] HitPositionScrollBar hitPositionScrollBar;
-    public override void Init(int seconds,int score,int lives, Action onTimerDone = null,Action<Minigame> OnGameEnded=null)
+    public override void Init(int seconds,int score,int lives, Action onTimerDone = null,Action<Minigame, int> OnGameEnded=null)
     {
         base.Init(seconds,score,lives,
             () =>
@@ -45,7 +45,8 @@ public class WateringMiniGame : Minigame
       float randFreq =  UnityEngine.Random.Range(1, 5);
      
       float targetRandSize = UnityEngine.Random.Range(0.05f, 0.5f);
-        float targetRandYPos = UnityEngine.Random.Range(0f, 1f);
+        float halfSize = targetRandSize/2;
+        float targetRandYPos = UnityEngine.Random.Range(halfSize, 1- halfSize);
         hitPositionScrollBar.CreateNewBar(freq: randFreq,targetSize: targetRandSize,targetYPos: targetRandYPos);
     }
 

@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SessionManager : MonoBehaviour
 {
     [SerializeField] AudioClip openMiniGame;
+    [SerializeField] private HorizontalLayoutGroup heartsGroup;
 
     const int TIMER_COUNTDOWN_SECONDS=3;
     const int PLAYER_MINIGAME_LIVES = 3;
 
+    private int currentLives = PLAYER_MINIGAME_LIVES;
+    
     private bool isInGame = false;
 
     // Start is called before the first frame update
@@ -43,14 +47,31 @@ public class SessionManager : MonoBehaviour
 
     void OnCountdownTimerEnded() { }
 
-     void OnMiniGameEnded(Minigame miniGame)
+    void OnMiniGameEnded(Minigame miniGame, int lives)
     {
-        miniGame.CloseSelf();
-        isInGame = false;
+         miniGame.CloseSelf();
+         isInGame = false;
+         if (lives != currentLives)
+         {
+            // player lost life
+            int difference = currentLives - lives;
+            currentLives = lives;
+            LoseLife(difference);
+            
+            if (currentLives == 0)
+            {
+                // game over   
+             }
+         }
     }
 
-     public void OnExitButtonClick()
-     {
-         Application.Quit();
-     }
+    private void LoseLife(int livesLost)
+    {
+         
+    }
+
+    public void OnExitButtonClick()
+    {
+        Application.Quit();
+    }
 }
