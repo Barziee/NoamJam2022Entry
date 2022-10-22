@@ -28,6 +28,14 @@ public class HitPositionScrollBar : MonoBehaviour
      
     public void init(Sprite arrowVisualSprite=null,float freq=0,float off=0,float targetYPos=0, float targetSize=0)
     {
+        CreateNewBar();
+        CanPlayerShoot = true;
+        ShouldArrowMove = true;
+     
+    }
+
+   public void CreateNewBar(Sprite arrowVisualSprite = null, float freq = 0, float off = 0, float targetYPos = 0, float targetSize = 0)
+    {
         if (freq > 0)
             frequency = freq;
         if (off > 0)
@@ -42,17 +50,16 @@ public class HitPositionScrollBar : MonoBehaviour
         if (targetSize > 0)
         {
             targetScroll.size = targetSize;
-            targetCollider.size =new Vector2(targetCollider.size.x,targetSize* scrollerRectTransform.sizeDelta.y);
+            targetCollider.size = new Vector2(targetCollider.size.x, targetSize * scrollerRectTransform.sizeDelta.y);
         }
 
 
-
-        ShouldArrowMove = true;
     }
 
     internal void CloseSelf()
     {
         ShouldArrowMove = false;
+        CanPlayerShoot = false;
     }
 
 
@@ -61,7 +68,7 @@ public class HitPositionScrollBar : MonoBehaviour
     {
         moveArrow();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && CanPlayerShoot)
         {
             ShootRayCast();
         }
@@ -85,7 +92,8 @@ public class HitPositionScrollBar : MonoBehaviour
     }
 
     public bool ShouldArrowMove { get; set; } = false;
-    
 
-    
+    public bool CanPlayerShoot { get; set; } = false;
+
+
 }

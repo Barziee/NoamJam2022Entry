@@ -46,7 +46,7 @@ public class WateringMiniGame : Minigame
      
       float targetRandSize = UnityEngine.Random.Range(0.05f, 0.5f);
         float targetRandYPos = UnityEngine.Random.Range(0f, 1f);
-        hitPositionScrollBar.init(freq: randFreq,targetSize: targetRandSize,targetYPos: targetRandYPos);
+        hitPositionScrollBar.CreateNewBar(freq: randFreq,targetSize: targetRandSize,targetYPos: targetRandYPos);
     }
 
     public override void EndGame()
