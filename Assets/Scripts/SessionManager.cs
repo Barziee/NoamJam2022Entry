@@ -49,5 +49,8 @@ public class SessionManager : MonoBehaviour
         isInGame = false;
     }
 
-
+     public void OnExitButtonClick()
+     {
+         Application.Quit();
+     }
 }

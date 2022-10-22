@@ -72,16 +72,16 @@ public class Spritzer : MonoBehaviour
 
     private IEnumerator NuzzlePress()
     {
+        WaterBullet waterBulletObj = Instantiate(bulletPrefab, nuzzle.transform.position, Quaternion.identity, bulletSpawn.transform);
+        bulletsList.Add(waterBulletObj);
+        
+        // play sfx water shoot
+        
         for (int i = 0; i < 5; i++)
         {
             nuzzle.transform.Translate(500 * Time.deltaTime * Vector2.left);
             yield return new WaitForSeconds(.05f);
         }
-        
-        WaterBullet waterBulletObj = Instantiate(bulletPrefab, nuzzle.transform.position, Quaternion.identity, bulletSpawn.transform);
-        bulletsList.Add(waterBulletObj);
-        
-        // play sfx water shoot
         
         for (int i = 0; i < 10; i++)
         {
