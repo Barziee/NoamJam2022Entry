@@ -110,7 +110,7 @@ public class InsectInvaders : Minigame
                 if (insectList.Contains(insect))
                         insectList.Remove(insect);
                 
-                if(insectSpawnLocations.Contains(location))
+                if(!insectSpawnLocations.Contains(location))
                         availableInsectSpawnLocations.Add(location);
 
                 if (finishedSpawning && insectList.Count == 0)
