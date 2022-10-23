@@ -13,6 +13,8 @@ public class SessionManager : MonoBehaviour
     private Tree currentTree;
     private int currentTreeScore = 0;
 
+    private int treesFixed = 0;
+
     const int TIMER_COUNTDOWN_SECONDS=3;
     const int PLAYER_MINIGAME_LIVES = 3;
 
@@ -102,8 +104,8 @@ public class SessionManager : MonoBehaviour
         {
             int victoryType = gameType;
             // player won minigame
-            currentTreeScore++;
-            if (currentTreeScore == 3)
+            currentTree.IncreaseScore();
+            if (currentTree.GetScore() == Tree.MAX_SCORE)
                 victoryType = 4;
             switch (victoryType)
             {
@@ -122,6 +124,11 @@ public class SessionManager : MonoBehaviour
                 default:
                     break;
             }
+        }
+
+        if (currentTree.playedAllGames())
+        {
+            // get new tree;
         }
     }
 

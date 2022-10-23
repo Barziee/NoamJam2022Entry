@@ -14,6 +14,9 @@ public class Tree : MonoBehaviour
         public bool playedBranch = false;
         public bool playedInsect = false;
 
+        private int score = 0;
+        public static int MAX_SCORE = 3;
+
         public void WaterGameWin()
         {
                 waterGameDamageObject.gameObject.SetActive(false);
@@ -33,5 +36,20 @@ public class Tree : MonoBehaviour
         {
                 damagedTreeObject.gameObject.SetActive(false);
                 fullyHealedTreeObject.gameObject.SetActive(true);
+        }
+
+        public bool playedAllGames()
+        {
+                return playedBranch && playedInsect && playedWater;
+        }
+
+        public void IncreaseScore()
+        {
+                score++;
+        }
+
+        public int GetScore()
+        {
+                return score;
         }
 }
