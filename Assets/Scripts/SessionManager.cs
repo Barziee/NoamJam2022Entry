@@ -36,6 +36,26 @@ public class SessionManager : MonoBehaviour
     {
         if (isInGame == false)
         {
+            int gameType = miniGame.GetMiniGameType();
+
+            switch (gameType)
+            {
+                case 1:
+                    if (currentTree.playedBranch)
+                        return;
+                    break;
+                case 2:
+                    if (currentTree.playedWater)
+                        return;
+                    break;
+                case 3:
+                    if (currentTree.playedInsect)
+                        return;
+                    break;
+                default:
+                    break;
+            }
+            
             //barzie anim
             SoundManager.Instance.PlayAudioEffectOnce(openMiniGame);
             miniGame.gameObject.SetActive(true);
@@ -48,19 +68,31 @@ public class SessionManager : MonoBehaviour
 
     void OnCountdownTimerEnded() { }
 
-    void OnMiniGameEnded(Minigame miniGame, int lives)
+    void OnMiniGameEnded(Minigame miniGame, bool win)
     {
-        int victoryType = miniGame.GetMiniGameType();
+        int gameType = miniGame.GetMiniGameType();
+
+        switch (gameType)
+        {
+            case 1:
+                currentTree.playedBranch = true;
+                break;
+            case 2:
+                currentTree.playedWater = true;
+                break;
+            case 3:
+                currentTree.playedInsect = true;
+                break;
+            default:
+                break;
+        }
         
         miniGame.CloseSelf();
         isInGame = false;
-        if (lives != currentLives)
+        if (!win)
         { 
             // player lost life
-            int difference = currentLives - lives;
-            LoseLives(difference);
-            currentLives = lives;
-
+            currentLives--;
             if (currentLives == 0)
             {
                 // game over   
@@ -68,6 +100,7 @@ public class SessionManager : MonoBehaviour
         }
         else
         {
+            int victoryType = gameType;
             // player won minigame
             currentTreeScore++;
             if (currentTreeScore == 3)

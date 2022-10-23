@@ -44,7 +44,7 @@ public class InsectInvaders : Minigame
         }
 
         public override void Init(int seconds, int score, int lives,
-                Action onComplete = null, Action<Minigame, int> onMiniGameEnded = null)
+                Action onComplete = null, Action<Minigame, bool> onMiniGameEnded = null)
         {
                 GameObject spritzerObj = Instantiate(spritzerPrefab, spritzerStartLocation);
                 spritzerObj.gameObject.SetActive(true);
@@ -52,7 +52,7 @@ public class InsectInvaders : Minigame
                 spritzerObject.SetBulletSpawn(spritzerBulletSpawn);
                 insectList = new List<Insect>();
                 availableInsectSpawnLocations = new List<Transform>(insectSpawnLocations);
-                
+                termitesToKill = 10;
                 base.Init(seconds, score, lives, () =>
                 {
                         spritzerObj.GetComponent<Spritzer>().SetCanShoot(true);

@@ -8,7 +8,7 @@ public class DeadBranch : Minigame
     [SerializeField] StayOnPositionScrollBar stayOnPositionScrollBar;
     [SerializeField] int amountOfRounds = 3;
 
-    public override void Init(int seconds, int score, int lives, Action onTimerDone = null, Action<Minigame, int> OnGameEnded = null)
+    public override void Init(int seconds, int score, int lives, Action onTimerDone = null, Action<Minigame, bool> OnGameEnded = null)
     {
         base.Init(seconds, score, lives,
             () =>

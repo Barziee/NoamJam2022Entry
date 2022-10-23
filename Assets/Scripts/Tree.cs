@@ -10,6 +10,10 @@ public class Tree : MonoBehaviour
 
         [SerializeField] private GameObject fullyHealedTreeObject;
 
+        public bool playedWater = false;
+        public bool playedBranch = false;
+        public bool playedInsect = false;
+
         public void WaterGameWin()
         {
                 waterGameDamageObject.gameObject.SetActive(false);

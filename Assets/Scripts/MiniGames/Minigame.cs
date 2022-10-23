@@ -17,7 +17,7 @@ public class Minigame : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI livesText;
 
-    Action<Minigame, int> onGameEnded;
+    Action<Minigame, bool> onGameEnded;
 
     public virtual void CloseSelf()
     {
@@ -53,12 +53,12 @@ public class Minigame : MonoBehaviour
     }
 
     public virtual void Init(int timerCountdownSeconds, int playerScore, int playerMiniGameLives,
-        Action onTimerDone = null, Action<Minigame, int> onMiniGameEnded = null)
+        Action onTimerDone = null, Action<Minigame, bool> onMiniGameEnded = null)
     {
         onGameEnded = onMiniGameEnded;
         if (playerMiniGameLives > 0)
             lives = playerMiniGameLives;
-
+        
         if (playerScore >= 0)
             score = playerScore;
 
@@ -92,6 +92,6 @@ public class Minigame : MonoBehaviour
 
     public virtual void EndGame()
     {
-        onGameEnded?.Invoke(this, lives);
+        onGameEnded?.Invoke(this, lives>0);
     }
 }

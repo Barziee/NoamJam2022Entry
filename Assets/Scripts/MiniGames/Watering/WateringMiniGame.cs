@@ -10,7 +10,7 @@ public class WateringMiniGame : Minigame
     [SerializeField] Transform[] hpDrops;
     [SerializeField] int amountOfRounds=5;
 
-    public override void Init(int seconds,int score,int lives, Action onTimerDone = null,Action<Minigame, int> OnGameEnded=null)
+    public override void Init(int seconds,int score,int lives, Action onTimerDone = null,Action<Minigame, bool> OnGameEnded=null)
     {
         base.Init(seconds,score,lives,
             () =>
