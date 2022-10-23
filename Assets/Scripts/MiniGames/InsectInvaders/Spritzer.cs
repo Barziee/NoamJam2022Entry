@@ -24,30 +24,20 @@ public class Spritzer : MonoBehaviour
     private float shootTimer;
 
     private bool canShoot = false;
-
+    private float maxX = 590f; //710f;
+    private float minX = -590f; //106f;
+    private float multipleByPixels = 100f;
+    
     private void Update()
     {
-        if (Input.GetKey(KeyCode.A))
-        {
-            // move left
-            Transform transform1;
-            (transform1 = transform).Translate(-speed * Time.deltaTime, 0, 0);
-            Vector3 position = transform1.localPosition;
-            position.x = Mathf.Clamp(position.x, -590.0f, 590.0f);
-            transform.localPosition = position;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            // move right
-            Transform transform1;
-            (transform1 = transform).Translate(speed * Time.deltaTime, 0, 0);
-            Vector3 position = transform1.localPosition;
-            position.x = Mathf.Clamp(position.x, -590.0f, 590.0f);
-            transform.localPosition = position;
-        }
-
+        float newX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
+        newX *= multipleByPixels;
+        Vector3 pos = transform.localPosition;
+        pos.x = Mathf.Clamp(newX, minX, maxX);
+        transform.localPosition = pos;
+        
         shootTimer += Time.deltaTime;
-        if (canShoot && shootTimer > coolDownTime && Input.GetKey(KeyCode.Space))
+        if (canShoot && shootTimer > coolDownTime && Input.GetMouseButton(0))
         {
             shootTimer = 0f;
             StartCoroutine(NuzzlePress());
